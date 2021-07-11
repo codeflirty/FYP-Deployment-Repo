@@ -205,6 +205,9 @@ class SpeechRecognitionModel(nn.Module):
         x = self.birnn_layers(x)
         x = self.classifier(x)
         return x
+    def load():
+        PATH = "new.pt"
+        return torch.load(PATH,map_location ='cpu')
 
 class IterMeter(object):
     """keeps track of total iterations"""
@@ -221,7 +224,7 @@ class IterMeter(object):
 PATH = "Trained_Model.pt"
 
 # Load
-trained_model = torch.load(PATH,map_location ='cpu')
+trained_model = SpeechRecognitionModel.load()
 
 def GreedyDecoder(output, blank_label=28, collapse_repeated=True):
     arg_maxes = torch.argmax(output, dim=2)
