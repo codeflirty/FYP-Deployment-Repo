@@ -171,7 +171,8 @@ class BidirectionalGRU(nn.Module):
         return x
 
 class SpeechRecognitionModel(nn.Module):
-    
+    PATH = "Trained_Model.pt"
+    model = torch.load(PATH,map_location ='cpu')
     def __init__(self, n_cnn_layers, n_rnn_layers, rnn_dim, n_class, n_feats, stride=2, dropout=0.1):
         super(SpeechRecognitionModel, self).__init__()
         n_feats = n_feats//2
@@ -205,9 +206,6 @@ class SpeechRecognitionModel(nn.Module):
         x = self.birnn_layers(x)
         x = self.classifier(x)
         return x
-    def load():
-        PATH = "Trained_Model.pt"
-        return torch.load(PATH,map_location ='cpu')
 
 class IterMeter(object):
     """keeps track of total iterations"""
@@ -224,7 +222,7 @@ class IterMeter(object):
 PATH = "Trained_Model.pt"
 
 # Load
-trained_model = SpeechRecognitionModel.load()
+trained_model = SpeechRecognitionModel.model
 
 def GreedyDecoder(output, blank_label=28, collapse_repeated=True):
     arg_maxes = torch.argmax(output, dim=2)
