@@ -206,7 +206,7 @@ class SpeechRecognitionModel(nn.Module):
         x = self.classifier(x)
         return x
     def load():
-        PATH = "new.pt"
+        PATH = "Trained_Model.pt"
         return torch.load(PATH,map_location ='cpu')
 
 class IterMeter(object):
