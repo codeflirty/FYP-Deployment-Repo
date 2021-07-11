@@ -222,7 +222,6 @@ PATH = "Trained_Model.pt"
 
 # Load
 trained_model = torch.load(PATH,map_location ='cpu')
-trained_model.eval()
 
 def GreedyDecoder(output, blank_label=28, collapse_repeated=True):
     arg_maxes = torch.argmax(output, dim=2)
