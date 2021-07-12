@@ -2,7 +2,8 @@
 from flask import Flask, request, jsonify, render_template
 import speech_recognition as sr
 import torch
-import os 
+import os
+import pandas as pd
 import torchaudio
 import numpy as np
 import torch.nn as nn
