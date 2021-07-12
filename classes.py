@@ -1,24 +1,11 @@
-import os
-import csv
-import glob
-import torch
-import torchaudio
-import numpy as np
-import pandas as pd 
-import torch.nn as nn
-import librosa.display
-import soundfile as sf
-import torch.optim as optim
-import IPython.display as ipd
-from comet_ml import Experiment
-import torch.utils.data as data
-import torch.nn.functional as F
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
-
 class TextTransform:
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F
     """Maps characters to integers and vice versa"""
     def __init__(self):
         char_map_str = """
@@ -103,6 +90,13 @@ class TextTransform:
         return ''.join(string).replace('<SPACE>', ' ')
 
 class CNNLayerNorm(nn.Module):
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F
     """Layer normalization built for cnns input"""
     def __init__(self, n_feats):
         super(CNNLayerNorm, self).__init__()
@@ -115,6 +109,13 @@ class CNNLayerNorm(nn.Module):
         return x.transpose(2, 3).contiguous() # (batch, channel, feature, time) 
 
 class ResidualCNN(nn.Module):
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F
     """Residual CNN inspired by https://arxiv.org/pdf/1603.05027.pdf
         except with layer norm instead of batch norm
     """
@@ -141,7 +142,13 @@ class ResidualCNN(nn.Module):
         return x # (batch, channel, feature, time)
 
 class BidirectionalGRU(nn.Module):
-
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F
     def __init__(self, rnn_dim, hidden_size, dropout, batch_first):
         super(BidirectionalGRU, self).__init__()
         self.BiGRU = nn.GRU(
@@ -158,7 +165,13 @@ class BidirectionalGRU(nn.Module):
         return x
 
 class SpeechRecognitionModel(nn.Module):
-    
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F    
     def __init__(self, n_cnn_layers, n_rnn_layers, rnn_dim, n_class, n_feats, stride=2, dropout=0.1):
         super(SpeechRecognitionModel, self).__init__()
         n_feats = n_feats//2
@@ -194,6 +207,13 @@ class SpeechRecognitionModel(nn.Module):
         return x
 
 class IterMeter(object):
+    import torch
+    import os
+    import pandas as pd
+    import torchaudio
+    import numpy as np
+    import torch.nn as nn
+    import torch.nn.functional as F
     """keeps track of total iterations"""
     def __init__(self):
         print('Text-13')
